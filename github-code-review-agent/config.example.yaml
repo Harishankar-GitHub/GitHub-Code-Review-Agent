@@ -1,0 +1,32 @@
+# GitHub Code Review AI Agent — Example Configuration
+#
+# SETUP INSTRUCTIONS:
+#   1. Copy this file to ~/.kiro/gh-review/config.yaml
+#      mkdir -p ~/.kiro/gh-review
+#      cp config.example.yaml ~/.kiro/gh-review/config.yaml
+#
+#   2. Fill in your GitHub token below (or set the GITHUB_TOKEN env var)
+#
+#   3. Run from anywhere:
+#      gh-review https://github.com/owner/repo/pull/42
+
+github:
+  # Fine-grained PAT — needs Contents: Read + Pull requests: Read
+  # Generate at: https://github.com/settings/tokens?type=beta
+  token: ""             # or set env: GITHUB_TOKEN
+
+kiro:
+  # model: "auto"       # optional — omit to use Kiro's default (auto)
+  #                     # options: auto, claude-sonnet-4-5, claude-opus-4-5, claude-haiku-4-5
+
+review:
+  focus:
+    - code_quality
+    - security
+    - best_practices
+    - performance
+    - test_coverage
+    # - commit_message      # optional: review commit message quality
+    # - pull_request_title  # optional: review PR title quality
+  severity_threshold: "low"   # low | medium | high
+  max_files: 50               # max files to review per PR
